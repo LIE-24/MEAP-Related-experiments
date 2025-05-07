@@ -39,12 +39,12 @@ class AttentionAnalyzer:
         # 获取token序列
         tokens = self.tokenizer.convert_ids_to_tokens(inputs['input_ids'][0])
         
-        # 对各部分进行编码（新增关键步骤）
+        # 对各部分进行编码
         answer_tokens = self.tokenizer.encode(answer, add_special_tokens=False)
         context_after_tokens = self.tokenizer.encode(context_after, add_special_tokens=False)
         query_tokens = self.tokenizer.encode(query, add_special_tokens=False)
         
-        # 定位各个部分的位置（修正位置计算）
+        # 定位各个部分的位置
         text_before_answer = context_before  # 不再包含EOS
         tokens_before = len(self.tokenizer.encode(text_before_answer, add_special_tokens=False))
         
@@ -148,7 +148,7 @@ def compare_models(test_cases):
     model_paths = [
         "/volume/demo/LLM/convert_model/mask/1b_0.15_v2/200b",
         "/volume/demo/LLM/convert_model/nomask/1b/200b"
-        # 可以根据需要添加更多模型路径
+
     ]
     
     analyzers = [AttentionAnalyzer(path) for path in model_paths]
@@ -225,7 +225,7 @@ def run_experiments():
 # "context_after": "shows the relationship between energy and mass. Einstein’s ideas revolutionized physics, and his work led to the development of technologies like GPS and nuclear energy. Despite facing initial skepticism, his theories were eventually proven through experiments and observations, earning him a Nobel Prize in Physics in 1921."
     
 # }
-# 可以根据需要添加更多模型路径
+
 # {
 # "name": "text8",
 # "query": "question: What was the primary function of the Great Pyramids of Giza?",
